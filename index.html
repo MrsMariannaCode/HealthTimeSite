@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HealthTime - Painel Médico & Prontuário</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Topbar do Sistema Médico -->
+  <header class="doctor-header">
+    <div class="logo-area">
+      <svg class="logo-icon" viewBox="0 0 24 24" fill="none">
+        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#f43f5e" stroke-width="2"/>
+        <path d="M3.5 12h4l2-4 3 8 2-4h5" stroke="#f43f5e" stroke-width="2"/>
+      </svg>
+      <h1>Health<span>Time</span> <small>| Módulo Médico UBS</small></h1>
+    </div>
+
+    <div class="doctor-profile">
+      <div class="doctor-info">
+        <strong>Dr. Carlos Eduardo</strong>
+        <span>CRM/SP 123456 • Cardiologia</span>
+      </div>
+      <div class="avatar-doc">CE</div>
+    </div>
+  </header>
+
+  <div class="main-container">
+    
+    <!-- Navegação Lateral / Abas -->
+    <aside class="sidebar">
+      <button class="nav-item active" onclick="alternarAba('prontuario', this)">
+        📋 Prontuário Eletrônico
+      </button>
+      <button class="nav-item" onclick="alternarAba('telemedicina', this)">
+        📹 Telemedicina (SUS)
+      </button>
+      <button class="nav-item" onclick="alternarAba('alertas', this)">
+        🚨 Central de Alertas
+      </button>
+    </aside>
+
+    <!-- Conteúdo Principal -->
+    <main class="content-area">
+
+      <!-- ABA 1: PRONTUÁRIO ELETRÔNICO -->
+      <section id="aba-prontuario" class="tab-content active">
+        
+        <!-- Cartão de Identificação do Paciente -->
+        <div class="card patient-card">
+          <div class="patient-header">
+            <div class="patient-avatar">JS</div>
+            <div>
+              <h2>João Silva</h2>
+              <p>68 anos • Masculino • Cartão SUS: 980.1234.5678.0012</p>
+            </div>
+            <span class="badge-status status-alert" id="statusPacienteHeader">● Monitoramento Ativo</span>
+          </div>
+
+          <div class="patient-grid">
+            <div class="info-box">
+              <label>Condições Crônicas</label>
+              <strong>Hipertensão Arterial, Histórico de Infarto</strong>
+            </div>
+            <div class="info-box">
+              <label>Última Aferição Pulseira</label>
+              <strong id="vitasResumo">72 BPM | SpO₂ 97%</strong>
+            </div>
+            <div class="info-box">
+              <label>Unidade de Saúde</label>
+              <strong>UBS Central - Unidade 04</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Layout em Duas Colunas: Eventos + Parecer Médico -->
+        <div class="two-columns">
+          
+          <!-- Histórico de Alertas Vindo do Banco -->
+          <div class="card">
+            <div class="card-title-bar">
+              <h3>Histórico de Eventos Cardíacos</h3>
+              <button class="btn-secondary" onclick="carregarHistoricoMedico()">🔄 Atualizar Dados</button>
+            </div>
+            
+            <div id="tabelaHistoricoMedico" class="history-list">
+              <!-- Dados carregados via JavaScript -->
+            </div>
+          </div>
+
+          <!-- Prescrição / Observações Médicas -->
+          <div class="card">
+            <h3>Parecer e Anotações do Prontuário</h3>
+            <p class="subtitle-text">Registre orientações clínicas para o acompanhamento do paciente.</p>
+            
+            <form id="formParecer" onsubmit="salvarParecer(event)">
+              <textarea id="textoParecer" rows="6" placeholder="Digite as observações médicas, readequação de dosagem de medicamentos ou conduta recomendada..."></textarea>
+              <button type="submit" class="btn-primary">💾 Salvar no Prontuário</button>
+            </form>
+            <div id="msgParecer" class="feedback-msg"></div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- ABA 2: TELEMEDICINA -->
+      <section id="aba-telemedicina" class="tab-content">
+        <div class="card">
+          <h2>Sala de Teleconsultas Segura</h2>
+          <p class="subtitle-text">Atendimento médico à distância integrado aos sinais vitais em tempo real.</p>
+
+          <div class="telemed-container">
+            <!-- Simulação da Tela de Vídeo -->
+            <div class="video-window">
+              <div class="video-placeholder">
+                <div class="remote-patient-avatar">JS</div>
+                <p><strong>Paciente: João Silva</strong></p>
+                <span class="pulse-live">🔴 AO VIVO • Conexão Criptografada</span>
+              </div>
+              <div class="video-controls">
+                <button class="btn-tele-control">🎙️ Mute</button>
+                <button class="btn-tele-control">📷 Câmera</button>
+                <button class="btn-tele-control btn-danger-call">📞 Encerrar Consulta</button>
+              </div>
+            </div>
+
+            <!-- Painel de Dados Biométricos ao Lado da Chamada -->
+            <div class="telemed-sidebar">
+              <h3>Sinais Vitais Durante a Consulta</h3>
+              <div class="vital-badge-box">
+                <span>Frequência Cardíaca:</span>
+                <strong id="teleBpm">72 BPM</strong>
+              </div>
+              <div class="vital-badge-box">
+                <span>Oxigenação (SpO₂):</span>
+                <strong id="teleSpo2">97%</strong>
+              </div>
+              <div class="vital-badge-box">
+                <span>Status da Pulseira:</span>
+                <span class="text-success">Normal em Repouso</span>
+              </div>
+
+              <hr>
+              <button class="btn-primary" onclick="alert('Receita digital enviada para o aplicativo do paciente!')">
+                📄 Emitir Receita Digital
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABA 3: CENTRAL DE ALERTAS -->
+      <section id="aba-alertas" class="tab-content">
+        <div class="card">
+          <h2>Ocorrências de Emergência Recentes</h2>
+          <p class="subtitle-text">Eventos de taquicardia ou quedas graves registrados no sistema.</p>
+          <div id="listaCentralAlertas" class="history-list">
+            <!-- Carregado via JS -->
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
