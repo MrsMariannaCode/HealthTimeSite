@@ -32,13 +32,13 @@
     <!-- Navegação Lateral / Abas -->
     <aside class="sidebar">
       <button class="nav-item active" onclick="alternarAba('prontuario', this)">
-        📋 Prontuário Eletrônico
+        Prontuário Eletrônico
       </button>
       <button class="nav-item" onclick="alternarAba('telemedicina', this)">
-        📹 Telemedicina (SUS)
+        Telemedicina (SUS)
       </button>
       <button class="nav-item" onclick="alternarAba('alertas', this)">
-        🚨 Central de Alertas
+        Central de Alertas
       </button>
     </aside>
 
@@ -53,8 +53,8 @@
           <div class="patient-header">
             <div class="patient-avatar">JS</div>
             <div>
-              <h2>João Silva</h2>
-              <p>68 anos • Masculino • Cartão SUS: 980.1234.5678.0012</p>
+              <h2>Marianna Batista</h2>
+              <p>19 anos • Feminino • Cartão SUS: 980.1234.5678.0012</p>
             </div>
             <span class="badge-status status-alert" id="statusPacienteHeader">● Monitoramento Ativo</span>
           </div>
@@ -82,7 +82,10 @@
           <div class="card">
             <div class="card-title-bar">
               <h3>Histórico de Eventos Cardíacos</h3>
-              <button class="btn-secondary" onclick="carregarHistoricoMedico()">🔄 Atualizar Dados</button>
+              <div class="action-buttons">
+                <button class="btn-warning" onclick="simularAlertaEmergencia()">🚨 Simular Recebimento de Alerta</button>
+                <button class="btn-secondary" onclick="carregarHistoricoMedico()">🔄 Atualizar</button>
+              </div>
             </div>
             
             <div id="tabelaHistoricoMedico" class="history-list">
@@ -97,7 +100,7 @@
             
             <form id="formParecer" onsubmit="salvarParecer(event)">
               <textarea id="textoParecer" rows="6" placeholder="Digite as observações médicas, readequação de dosagem de medicamentos ou conduta recomendada..."></textarea>
-              <button type="submit" class="btn-primary">💾 Salvar no Prontuário</button>
+              <button type="submit" class="btn-primary">Salvar no Prontuário</button>
             </form>
             <div id="msgParecer" class="feedback-msg"></div>
           </div>
@@ -117,7 +120,7 @@
             <div class="video-window">
               <div class="video-placeholder">
                 <div class="remote-patient-avatar">JS</div>
-                <p><strong>Paciente: João Silva</strong></p>
+                <p><strong>Paciente: Marianna Batista</strong></p>
                 <span class="pulse-live">🔴 AO VIVO • Conexão Criptografada</span>
               </div>
               <div class="video-controls">
@@ -145,7 +148,7 @@
 
               <hr>
               <button class="btn-primary" onclick="alert('Receita digital enviada para o aplicativo do paciente!')">
-                📄 Emitir Receita Digital
+                Emitir Receita Digital
               </button>
             </div>
           </div>

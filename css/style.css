@@ -159,3 +159,26 @@ textarea:focus { border-color: #0284c7; }
 .telemed-sidebar { background: #f8fafc; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; gap: 12px; }
 .vital-badge-box { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 600; }
 .text-success { color: #10b981; font-weight: 700; }
+.action-buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn-warning {
+  background: #fff1f2;
+  color: #f43f5e;
+  border: 1px solid #f43f5e;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-warning:hover {
+  background: #f43f5e;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(244, 63, 94, 0.3);
+}
