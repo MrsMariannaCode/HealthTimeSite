@@ -27,7 +27,7 @@ try {
         data_hora DATETIME DEFAULT CURRENT_TIMESTAMP
     )");
 
-    // Adiciona a coluna estado_evento caso a tabela já existisse na versão anterior
+    // Coluna estado_evento 
     $colunas = $pdo->query("PRAGMA table_info(pareceres)")->fetchAll(PDO::FETCH_COLUMN, 1);
     if (!in_array('estado_evento', $colunas)) {
         $pdo->exec("ALTER TABLE pareceres ADD COLUMN estado_evento TEXT DEFAULT 'SEM ALTERAÇÃO'");
