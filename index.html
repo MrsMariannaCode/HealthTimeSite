@@ -15,7 +15,7 @@
         <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="#f43f5e" stroke-width="2"/>
         <path d="M3.5 12h4l2-4 3 8 2-4h5" stroke="#f43f5e" stroke-width="2"/>
       </svg>
-      <h1>Health<span>Time</span> <small>| Módulo Médico UBS</small></h1>
+      <h1>Health<span>Time</span></h1>
     </div>
 
     <div class="doctor-profile">
@@ -37,8 +37,8 @@
       <button class="nav-item" onclick="alternarAba('telemedicina', this)">
         Telemedicina (SUS)
       </button>
-      <button class="nav-item" onclick="alternarAba('alertas', this)">
-        Central de Alertas
+      <button class="nav-item" onclick="alternarAba('resumo', this)">
+        Resumo dos Pacientes
       </button>
     </aside>
 
@@ -51,7 +51,7 @@
         <!-- Cartão de Identificação do Paciente -->
         <div class="card patient-card">
           <div class="patient-header">
-            <div class="patient-avatar">JS</div>
+            <div class="patient-avatar">MB</div>
             <div>
               <h2>Marianna Batista</h2>
               <p>19 anos • Feminino • Cartão SUS: 980.1234.5678.0012</p>
@@ -83,8 +83,7 @@
             <div class="card-title-bar">
               <h3>Histórico de Eventos Cardíacos</h3>
               <div class="action-buttons">
-                <button class="btn-warning" onclick="simularAlertaEmergencia()">🚨 Simular Recebimento de Alerta</button>
-                <button class="btn-secondary" onclick="carregarHistoricoMedico()">🔄 Atualizar</button>
+                <button class="btn-warning" onclick="simularAlertaEmergencia()">🚨 Simular Recebimento de Alerta e Atualizar</button>
               </div>
             </div>
             
@@ -119,7 +118,7 @@
             <!-- Simulação da Tela de Vídeo -->
             <div class="video-window">
               <div class="video-placeholder">
-                <div class="remote-patient-avatar">JS</div>
+                <div class="remote-patient-avatar">MB</div>
                 <p><strong>Paciente: Marianna Batista</strong></p>
                 <span class="pulse-live">🔴 AO VIVO • Conexão Criptografada</span>
               </div>
@@ -155,13 +154,35 @@
         </div>
       </section>
 
-      <!-- ABA 3: CENTRAL DE ALERTAS -->
-      <section id="aba-alertas" class="tab-content">
+      <!-- ABA 3: RESUMO DOS PACIENTES -->
+      <section id="aba-resumo" class="tab-content">
         <div class="card">
-          <h2>Ocorrências de Emergência Recentes</h2>
-          <p class="subtitle-text">Eventos de taquicardia ou quedas graves registrados no sistema.</p>
-          <div id="listaCentralAlertas" class="history-list">
-            <!-- Carregado via JS -->
+          <div class="card-title-bar">
+            <div>
+              <h2>Resumo Clínico dos Pacientes</h2>
+              <p class="subtitle-text">Ficha consolidada e pareceres médicos registrados no prontuário.</p>
+            </div>
+          </div>
+
+          <!-- Dados Consolidados do Paciente -->
+          <div class="patient-grid" style="margin-bottom: 24px;">
+            <div class="info-box">
+              <label>Paciente em Acompanhamento</label>
+              <strong>Marianna Batista • 19 anos</strong>
+            </div>
+            <div class="info-box">
+              <label>Cartão Nacional de Saúde (SUS)</label>
+              <strong>980.1234.5678.0012</strong>
+            </div>
+            <div class="info-box">
+              <label>Diagnóstico e Histórico</label>
+              <strong>Hipertensão Arterial • Histórico de Infarto</strong>
+            </div>
+          </div>
+
+          <h3 style="margin-bottom: 12px;">Anotações e Condutas do Prontuário</h3>
+          <div id="listaResumoPareceres" class="history-list">
+            <!-- Pareceres carregados do banco de dados via JS -->
           </div>
         </div>
       </section>
